@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="factorialApp">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Factorial Calculator</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <style>
+            body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            }
+            .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            }
+            .form-group {
+            margin-bottom: 20px;
+            }
+            .btn-primary {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            }
+            .btn-primary:hover {
+            background-color: #0056b3;
+            }
+            .result {
+            margin-top: 20px;
+            }
+            .error {
+            color: red;
+            font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h2>Name: Shaktisinh Raolji</h2>
+            <h2>En No.: 220410116110</h2>
+        </div>
+        <div class="container" ng-controller="FactorialController as factorialCtrl">
+            <h1>Factorial Calculator</h1>
+            
+            <div class="form-group">
+                <label for="numberInput">Enter a number:</label>
+                <input type="number" id="numberInput" class="form-control" ng-model="factorialCtrl.number" required>
+            </div>
+            
+            <button class="btn btn-primary" ng-click="factorialCtrl.calculateFactorial()">Calculate Factorial</button>
+            
+            <div ng-if="factorialCtrl.result !== null" class="result">
+                <p ng-if="!factorialCtrl.error">Factorial of {{ factorialCtrl.number }} is: {{ factorialCtrl.result }}</p>
+                <p ng-if="factorialCtrl.error" class="error">Error: Factorial is not defined for negative numbers.</p>
+            </div>
+        </div>
+
+        <script>
+            angular.module('factorialApp', [])
+                .controller('FactorialController', function () {
+                    const vm = this;
+                    vm.number = null;
+                    vm.result = null;
+                    vm.error = false;
+
+                    vm.calculateFactorial = function () {
+                        if (vm.number === null || vm.number < 0) {
+                            vm.error = true;
+                            vm.result = null;
+                        } else {
+                            vm.error = false;
+                            let fact = 1;
+                            for (let i = 1; i <= vm.number; i++) {
+                                fact *= i;
+                            }
+                            vm.result = fact;
+                        }
+                    };
+                });
+        </script>
+
+    </body>
+</html>

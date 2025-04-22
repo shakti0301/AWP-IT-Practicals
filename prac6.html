@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Remove Items from Dropdown</title>
+        <style>
+            body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            }
+
+            h1 {
+            text-align: center;
+            }
+
+            select {
+            padding: 10px;
+            margin: 10px 0;
+            width: 200px;
+            }
+
+            button {
+            padding: 10px 15px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            }
+
+            button:hover {
+            background-color: #c82333;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h2>Name: Shaktisinh Raolji</h2>
+            <h2>En No.: 220410116110</h2>
+        </div>
+        <h1>Remove Items from Dropdown</h1>
+
+        <select id="dropdown">
+            <option value="item1">Item 1</option>
+            <option value="item2">Item 2</option>
+            <option value="item3">Item 3</option>
+            <option value="item4">Item 4</option>
+            <option value="item5">Item 5</option>
+        </select>
+
+        <br />
+
+        <button onclick="removeSelected()">Remove Selected Item</button>
+
+        <script>
+            function removeSelected() {
+            const dropdown = document.getElementById('dropdown');
+            const selectedIndex = dropdown.selectedIndex;
+
+            if (selectedIndex !== -1) {
+                dropdown.options[selectedIndex].remove();
+                console.log('Selected item removed.');
+            } else {
+                console.log('No item selected.');
+            }
+            }
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="loginApp">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Login Form with AngularJS Validation</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <style>
+            .text-danger {
+            font-size: 0.9rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h2>Name: Shaktisinh Raolji</h2>
+            <h2>En No.: 220410116110</h2>
+        </div>
+        <div class="container mt-5" ng-controller="LoginController">
+            <h2>Login Form</h2>
+            <form name="loginForm" ng-submit="submitForm()" novalidate>
+
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username"
+                            ng-model="user.username" ng-minlength="3" required />
+                    <div ng-show="loginForm.username.$dirty && loginForm.username.$error.required" class="text-danger">
+                        Username is required.
+                    </div>
+                    <div ng-show="loginForm.username.$dirty && loginForm.username.$error.minlength" class="text-danger">
+                        Username must be at least 3 characters long.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email"
+                            ng-model="user.email" required />
+                    <div ng-show="loginForm.email.$dirty && loginForm.email.$error.required" class="text-danger">
+                        Email is required.
+                    </div>
+                    <div ng-show="loginForm.email.$dirty && loginForm.email.$error.email" class="text-danger">
+                        Invalid email format.
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+        </div>
+
+        <script>
+        angular.module("loginApp", [])
+            .controller("LoginController", function ($scope) {
+            $scope.user = {};
+
+                $scope.submitForm = function () {
+                    if ($scope.loginForm.$valid) {
+                        alert("Login Successful!");
+                        // Here you can handle login logic, e.g. sending data to server
+                    } else {
+                        alert("Invalid Credentials!!!");
+                    }
+                };
+            });
+        </script>
+
+    </body>
+</html>
